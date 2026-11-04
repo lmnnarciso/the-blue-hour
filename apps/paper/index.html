@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Blue Hour</title>
+<meta name="description" content="A broadsheet of gentle, absurd news, printed in one blue ink. The text reflows around every illustration as it moves.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<link rel="stylesheet" href="./style.css">
+<script>document.documentElement.classList.add('js')</script>
+<script type="module" src="./main.js"></script>
+</head>
+<body>
+<div class="page">
+
+<header class="masthead">
+  <div class="rule2"></div>
+  <div class="meta">
+    <span>Vol. I · No. 1 — Printed in one blue ink</span>
+    <em>“All the news that fits around the pictures.”</em>
+    <span><time id="today">Wednesday, 4 November 2026</time> · Two cents</span>
+  </div>
+  <div class="rule1"></div>
+  <h1 aria-label="The Blue Hour">The Blue H<span class="o-moon"><canvas aria-hidden="true"></canvas></span>ur</h1>
+  <div class="rule2"></div>
+  <ul class="stats" aria-label="From the press room">
+    <li><b>Moon, lit</b><span id="st-lit">77%</span></li>
+    <li><b>Lines set</b><span id="st-lines">0</span></li>
+    <li><b>Soft hyphens</b><span id="st-hy">0</span></li>
+    <li><b>Inks on press</b><span>1</span></li>
+    <li><b>Bad news</b><span>0</span></li>
+    <li><b>Since printing</b><span id="st-time">00:00</span></li>
+    <li><b>Ducks afloat</b><span>1</span></li>
+  </ul>
+  <div class="rule1"></div>
+</header>
+
+<main>
+<section class="row" aria-label="Front page">
+  <article class="story s7 lead">
+    <h2>The Moon Turns Up Again and Looks Well Pleased</h2>
+    <p class="deck">Observers in the harbour town report the moon was seen again last night, at a comfortable height. Nobody was surprised, though several people stood outside a while anyway.</p>
+    <p class="byline">By the Night Desk</p>
+    <div class="flow" data-cols="3">
+      <p>The moon was seen again last night, which will surprise nobody who has been paying attention. It rose a little after nine o’clock over the harbour, looking round and pale and rather pleased with itself, and it stayed up for most of the evening in its usual place. Our night desk counted the minutes and found it was visible for seven hours and twelve minutes, a figure they described as respectable. See Fig. 1 for a likeness, made by hand in one blue ink, which is the nearest we could get to the real thing without a ladder.</p>
+      <p>A retired schoolteacher, Miss Ivy Hallam, has kept a notebook of moons since the spring of 1961 and says this one was rounder than the last. She allowed that the difference might be her glasses. ‘I have seen a great many moons,’ she told us on the steps of the library, ‘and they are all a little different, the way people are.’ Miss Hallam asks that readers look up at around eight o’clock, when the light is kind to it.</p>
+      <p>The star chart beside this column turns once every ninety seconds, which is slow enough that you cannot see it move and fast enough that you will notice it has moved if you look away for a cup of tea. Fig. 2 shows the sky as it was at the time of going to press, although the printers are unable to guarantee where the stars will be by the time you read this. The chart is drawn on a disc of blue card and is kept on the lighthouse landing, where the keeper, Mr. Tobias Wren, checks it every evening.</p>
+      <p>The harbour master, Captain Dorothy Quill, has measured the distance to the moon from the end of the breakwater, using a length of string and a good deal of faith. She reports it as roughly four hundred thousand kilometres, give or take the string. Captain Quill also notes that the moon did not appear to be in any hurry, and that its light moved across the water at a pace she describes as dignified. Nobody has yet been able to ask it how it is getting on, although several people have tried, mostly in whispers, and mostly on the pier.</p>
+      <p>A word about the drawing in Fig. 1, which was made from a single blue ink and a great many small dots. Each dot was placed by hand, following a pattern of eight by eight, so that the light falls on the upper left as the moon would prefer. The shadows fall gently away into the paper. It is not a photograph, and we have been asked to say so, although the moon has not asked us to say anything at all.</p>
+      <p>Our advice to readers is simple. Look up after dark, from somewhere the streetlamps are sleepy, and give the moon a minute to settle in. It will not mind if you are a little late. The Night Desk will keep watch and report any change.</p>
+      <p>Meanwhile, the tide tables for the harbour show high water at a sensible hour, which the harbour master says is a comfort to everyone who has ever tried to sleep through a loud tide. It has been very cooperative ever since the moon came back.</p>
+      <p>The moon, for its part, has offered no comment, which the Night Desk takes as a good sign. We will report again if it does, or if it simply carries on being the moon, which we are told is a full-time job.</p>
+      <figure class="art" data-art="moon" data-x=".345" data-y="9" data-w="150" data-h="150" data-alt="A dithered blue full moon">
+        <figcaption>Fig. 1 — The moon, as last seen · Bayer 8 × 8</figcaption>
+      </figure>
+      <figure class="art" data-art="chart" data-x=".667" data-y="31" data-w="112" data-h="112" data-motion="spin" data-alt="A small round star chart, turning slowly">
+        <figcaption>Fig. 2 — Tonight’s sky, turning</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="story s5">
+    <h2>Rubber Duck Swims the Pacific in One Long Loop and Feels Fine</h2>
+    <p class="deck">A small yellow rubber duck, lost from a seaside bath long ago, has completed a full lap of the Pacific Ocean. It remains in good spirits.</p>
+    <p class="byline">From our correspondent at sea</p>
+    <div class="flow" data-cols="2">
+      <p>The duck first went to sea from a small bathroom in a seaside town, where it had been a regular fixture for some years. A nine-year-old called Elsie Byrne was supposed to be washing her hands at the time, and was instead racing the duck across the sink. The duck won by a considerable margin. Nobody thought much about it until the window was found open the next morning, and the duck was not.</p>
+      <p>Fig. 3 shows the duck on arrival, which is to say sitting upright on a tidy stone with the air of someone who has been expected for a while. Its paint is a little faded across the back, from the sun, and its beak has a small dent that the harbour master says is from a gull, although the gull has declined to comment.</p>
+      <p>The duck’s voyage, as far as it can be reconstructed from the reports, went north past the lighthouse, out across a good deal of open water, and then in a long and dignified curve that took it through the middle of the ocean. A fishing crew from the far side of the sea reported seeing it on a Thursday, sitting on the swell and looking as if it had only stepped out for a minute. They waved.</p>
+      <p>Our figures, compiled by the harbour office with a pencil and a ruler, put the total distance at about eleven thousand nautical miles. The duck averaged roughly four knots, which is quicker than a rowing boat and slower than a determined goose. It spent an estimated eleven hundred nights at sea, though not all in a row, and was observed to be cheerful on most of them.</p>
+      <p>The duck is now in a museum, though the museum would prefer we did not say which one. The curator, a patient man named Gideon Ferrier, has given it a small wooden chair by the window and a view of the bay, which he says is the least a duck can expect after a voyage of this kind. Visitors are asked to speak softly and not to splash.</p>
+      <p>A small word from the harbour office on what happens next. The duck will not be sent on another voyage this year, the office has decided, though it has not ruled out a short trip to the breakwater on a calm afternoon. Anyone who would like to greet it is welcome to wave from the quay. It will wave back, we are reliably informed, with its whole face.</p>
+      <figure class="art" data-art="duck" data-x=".5" data-y="25" data-w="150" data-h="120" data-motion="drift" data-alt="A dithered blue rubber duck, drifting">
+        <figcaption>Fig. 3 — The duck, on arrival</figcaption>
+      </figure>
+    </div>
+  </article>
+</section>
+
+<section class="row" aria-label="Letters and further news">
+  <article class="story s5 letter">
+    <h2>A Letter from the Printer</h2>
+    <p class="deck">A few words from the person who sets this paper, one line at a time.</p>
+    <div class="flow" data-cols="2">
+      <p>Dear readers, I am the printer of this paper, which means I am the person who sets each line by hand, looks at it for a while, and then sets it again. The paper is printed in one blue ink, and I have never once regretted it.</p>
+      <p>The most curious part of my work is the way the text makes room. When a picture is moved across the page, even by a little, every line of type must find its own way around the edge of it, the way water goes around a stone. I measure each line with a small ruler and a great deal of patience, and when a picture is nudged I start again, which I do not mind in the least.</p>
+      <p>The press is old and loud and has a way of humming when it is pleased. I keep a cup of tea beside it, which has been there so long it has become part of the furniture. On the rare occasion a line runs too long, I take out a single word and put it back in a different place, and the sentence is almost always better for the trouble.</p>
+      <p>Thank you to everyone who has written in this week. Some of you have sent drawings, one of you sent a pressed leaf that I have decided to keep, and a nine-year-old wrote to ask whether the moon would be coming to the next issue. It will, as far as I can arrange it. Your letters are the reason I come in early and why the ink is never quite dry by breakfast.</p>
+      <p>Please keep looking up, and please keep writing, even if the letter is only to say the moon looked well. I will set every word of it by hand, and the text will move aside for it, which is the least a paper can do for its readers. With warm regards and one blue hand, I remain, faithfully yours, at the press.</p>
+    </div>
+    <p class="sign">— The Printer</p>
+  </article>
+
+  <article class="story s7">
+    <h2>Birthday Balloon From 1994 Is Still Climbing and Sends Its Regards</h2>
+    <p class="deck">A blue balloon released at a birthday party in 1994 is still climbing, and the weather desk has been asked to keep an eye on it.</p>
+    <p class="byline">By our weather desk</p>
+    <div class="flow" data-cols="3">
+      <p>A blue balloon was let go at a birthday party in the summer of 1994, at about a quarter past four in the afternoon, by a child whose name the weather desk has been asked not to print. The child was very pleased with it. The balloon, on the other hand, was not in a position to say, because it had already started going up.</p>
+      <p>Our records show that the balloon has risen steadily ever since, pausing only once, in 2003, for what we believe was a brief disagreement with a hillside. It is now, by the best estimate of the weather desk, a very long way above the clouds, and still going. The rate of climb has slowed a little with age, which the desk considers entirely reasonable for a balloon of its years.</p>
+      <p>Fig. 4 shows five balloons, which are not the same balloon, but are related to it in the way old friends are related. They were released at later parties by people who had heard about the first one and wanted to be part of something. Each of them is climbing, and the weather desk asks that anyone who sees one bobbing politely at a great height kindly let us know.</p>
+      <p>A shepherd named Owen Pryce, who was standing in a field at the time, says he waved, and that the balloon waved back, or at least dipped a little, which he took as the same thing. He has since waved at several more. Mr. Pryce asks that the balloon be given a good view of the valley and, if possible, a report on the sheep.</p>
+      <p>Our figures, which are estimates made by looking very hard, suggest the balloon has now climbed further than any balloon has a right to. The weather desk has asked the nearest aircraft to keep a respectful distance and, should it pass close enough, to say hello. So far there has been no reply, although a pilot did report a small flash of blue that may have been a greeting.</p>
+      <p>Readers who wish to send the balloon a message may write it on a postcard and leave it on the bench by the lighthouse, where the keeper promises to read it aloud on Sundays. The balloon has never been known to reply, but it is a very good listener, and it has the advantage of being in no hurry to leave.</p>
+      <p>The birthday child, now grown, was reached for comment. She said she hopes it is having a lovely time. She also said, after a pause, that she would quite like it to come back for tea one afternoon, though she understands that is not how balloons work, and that she is grateful to have had it at all.</p>
+      <figure class="art" data-art="balloons" data-x=".667" data-y="6" data-w="150" data-h="200" data-motion="bob" data-alt="A dithered blue bunch of five balloons, bobbing">
+        <figcaption>Fig. 4 — Five balloons, still going</figcaption>
+      </figure>
+    </div>
+  </article>
+</section>
+
+<section class="moons" aria-labelledby="moons-h">
+  <h2 id="moons-h">The Week in Moons</h2>
+  <p class="deck">Seven moon phases this week, listed in order, with a short note on each for those who missed them.</p>
+  <ol class="phases"></ol>
+</section>
+
+<section class="row" aria-label="Guides and classifieds">
+  <article class="story s8 guide">
+    <h2>How to Look Up: A Beginner’s Guide</h2>
+    <p class="deck">A gentle introduction for anyone who has never looked up on purpose, with a few tips on finding things and a suggestion about hats.</p>
+    <p class="byline">By the Astronomy Correspondent</p>
+    <div class="flow" data-cols="3">
+      <p>Looking up is easier than it sounds, and it asks very little of you beyond a clear evening, a comfortable chair and a willingness to be patient with yourself. You do not need any equipment to begin, although a blanket is strongly recommended, and so is a flask of something warm, since the sky is generally colder than it appears from the kitchen window.</p>
+      <p>First, choose a spot away from the streetlamps, which were put there to help and mostly get in the way. A garden is ideal, a field is better, and a harbour wall with a bench is best of all, provided the bench is dry. Give your eyes about ten minutes to adjust. This is the most important part, and the part most people skip while looking for their phone.</p>
+      <p>Second, find something to look at that is easy to find. The large round star chart in Fig. 5 is a good companion, since it turns once every ninety seconds and will show you how the whole sky is moving. You will notice that the stars keep their places relative to one another, which is a comfort, and that the whole thing is not quite as fast as you had hoped.</p>
+      <p>Third, learn three things and no more. The first is the Plough, seven stars that look like a saucepan and are easy to remember at a glance. The second is the pale band that crosses the sky on a clear night, which is the edge of our own galaxy seen from the inside, and which is best enjoyed without anything in the way. The third is the moon, which is very easy to find.</p>
+      <p>Fourth, keep a notebook, however small. Write down the date, the time, roughly where you were standing, and what you saw, even if what you saw was nothing much. Miss Ivy Hallam has done this since 1961 and says it is the single most useful habit a beginner can have, mostly because in a year’s time you will be astonished by how much has changed, and how much has stayed exactly where it was.</p>
+      <p>Fifth, be kind to your neck. Most people lean back as far as they can and then stay there for an hour, which is lovely for about four minutes and quite painful after that. A reclining chair, a folded blanket or a lawn that is reasonably flat will all help. If you are sitting, tilt your head back slowly, and if you are lying down, use a cushion.</p>
+      <p>Sixth, and this is the part that surprises most people, you will not see very much at first, and this is perfectly normal. By the end of the first hour you will have noticed a dozen things you had not noticed before. A few faint stars will have turned into many, a sliver of cloud will have become a whole county of cloud, and the owl that you were certain was a lamppost will have said something.</p>
+      <p>Finally, dress as though you are going to a cold and rather formal dinner, with a hat, two pairs of socks and a flask, and bring a friend if you can, since a conversation is the best thing to have while waiting for the stars to come out. Keep the guide in your pocket. It is short on purpose, and the moon, when it arrives, will not mind waiting for you to finish.</p>
+      <figure class="art" data-art="chart" data-x=".36" data-y="9" data-w="260" data-h="260" data-motion="spin" data-alt="A large round star chart, turning once every ninety seconds">
+        <figcaption>Fig. 5 — The whole sky, slowly · one turn per 90 s</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <aside class="story s4 classifieds" aria-labelledby="cl-h">
+    <h2 id="cl-h">Classifieds</h2>
+    <div class="ads">
+      <p><b>Lost.</b> One blue rubber glove, last seen on the harbour wall on a windy Tuesday. It was waving at the time and may be waving still. Finder please reply c/o the lighthouse keeper, who keeps a tidy list.</p>
+      <p><b>Found.</b> A pair of spectacles on the bench by the pier, folded with great care and still warm. Owner may claim them by describing the view they were looking at, which the harbour office will accept as proof. Apply before the tide turns.</p>
+      <p><b>Wanted.</b> A reliable ladder, reasonably tall, for the purpose of reaching a moon that is currently out of reach. Only tall ones need apply. Reply to the Night Desk, care of the post office, with a photograph.</p>
+      <p><b>For Sale.</b> A brass telescope, slightly bent at one end, which the owner says improves the view of anything worth seeing. Very gentle use, mostly on Thursdays. Price by arrangement or a good biscuit. Reply c/o the Bakery Bench, ask for Mr. Pryce.</p>
+      <p><b>Personal.</b> To the gentleman who waved from the ferry on Thursday: the lady in the green hat waved back, and would like to know whether you are still on the boat. Reply c/o the Harbour Office, in writing, with a drawing of a duck.</p>
+      <p><b>To Let.</b> Two rooms above the bakery, with a view of the bay and a ceiling that hums gently in the evenings. Suitable for a quiet tenant who enjoys the moon. Pets welcome, provided they are ducks. Apply c/o the lighthouse, before breakfast.</p>
+      <p><b>Services.</b> Hedges trimmed into the shapes of small boats, by a patient man with excellent scissors. Estimates are free and are given in the form of a short poem. Enquire at the pier, quoting reference number seven.</p>
+      <p><b>Notice.</b> The annual meeting of the Society for Slow Clocks will take place on the pier at four o’clock, weather and clocks permitting. Refreshments will be provided, and nobody will be asked to hurry. Anyone wishing to attend should simply come and sit down.</p>
+      <p><b>Free.</b> Several dozen sea-smoothed pebbles, each one a different shade of blue, available to anyone who can carry them home. Please take only the ones that are looking at you. Ask for them at the pier, or simply take one and wave.</p>
+    </div>
+  </aside>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="rule2"></div>
+  <p>Set line by line with canvas <code>measureText</code>; every line is wrapped around the real outline of the art beside it. Illustrations are drawn by hand in code and dithered with an 8&thinsp;×&thinsp;8 Bayer matrix in one cobalt ink.</p>
+  <p>Inspired by “The Blue Hour”, an original piece by keshav (<a href="https://x.com/kshvbgde/status/2116270360417243293">@kshvbgde</a>). Headlines, copy and drawings here are our own.</p>
+</footer>
+
+</div>
+</body>
+</html>

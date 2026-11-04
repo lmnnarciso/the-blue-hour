@@ -1,0 +1,11 @@
+{
+  "name": "the-blue-hour",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "pnpm --filter @blue-hour/paper dev",
+    "build": "pnpm --filter @blue-hour/paper build",
+    "test": "pnpm -r --if-present test"
+  }
+}
