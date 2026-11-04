@@ -129,8 +129,51 @@ function setupFlow(el) {
     canvas.style.width = `${f.w}px`;
     canvas.style.height = `${f.h}px`;
     flow.figs.push(f);
+    draggable(flow, f);
   }
   return flow;
+}
+
+/** Drag an illustration anywhere in its story; the text reflows around it every frame. */
+function draggable(flow, f) {
+  const c = f.canvas;
+  c.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0 || f.t0 == null) return;
+    e.preventDefault();
+    c.setPointerCapture(e.pointerId);
+    c.classList.add('held');
+    const ox = f.cx - e.pageX, oy = f.cy - e.pageY;
+    const move = (e) => {
+      const hw = (f.w * f.k) / 2, hh = (f.h * f.k) / 2;
+      f.cx = Math.min(flow.W - hw, Math.max(hw, e.pageX + ox));
+      f.cy = Math.max(hh, Math.min(flow.opts.rows * LH - (f.bottom - f.cy), e.pageY + oy)); // keep the caption inside the story
+      if (f.side) f.side = f.cx < flow.W / 2 ? 'left' : 'right';
+      place(flow, f);
+      flow.dirty = true;
+    };
+    c.addEventListener('pointermove', move);
+    c.addEventListener('lostpointercapture', () => { // pointerup and pointercancel both end here
+      c.removeEventListener('pointermove', move);
+      c.classList.remove('held');
+      f.x = f.cx / flow.W; // remembered across resizes
+      f.y = (f.cy - (f.h * f.k) / 2) / LH;
+      fit(flow);
+      flow.dirty = true;
+    }, { once: true });
+  });
+}
+
+/** Put an illustration's canvas and caption at f.cx, f.cy, and move the caption's obstacle with them. */
+function place(flow, f) {
+  const hh = (f.h * f.k) / 2;
+  f.canvas.style.left = `${f.cx - f.w / 2}px`;
+  f.canvas.style.top = `${f.cy - f.h / 2}px`;
+  const left = Math.min(flow.W - f.capW, Math.max(0, f.cx - f.capW / 2));
+  const top = f.cy + hh * ENVELOPE + (MOTION[f.motion] || STILL).y + 6;
+  f.caption.style.left = `${left}px`;
+  f.caption.style.top = `${top}px`;
+  Object.assign(f.capRect, { x0: left - PAD_X, x1: left + f.capW + PAD_X, y0: top - PAD_Y, y1: top + f.capH + PAD_Y });
+  f.bottom = top + f.capH;
 }
 
 /** Obstacle query for the line breaker. env = the widest the art can ever get (sizes the columns once). */
@@ -160,7 +203,7 @@ function blockedFor(flow, env) {
 
 /** Columns, art positions and the fixed column height for the current width. */
 function arrange(flow) {
-  const W = flow.el.clientWidth;
+  const W = (flow.W = flow.el.clientWidth);
   const n = Math.max(1, Math.min(+flow.el.dataset.cols || 1, Math.floor((W + GUTTER) / (MIN_COL + GUTTER))));
   const cw = (W - GUTTER * (n - 1)) / n;
   flow.cols = Array.from({ length: n }, (_, i) => ({ x: i * (cw + GUTTER), w: cw }));
@@ -171,36 +214,49 @@ function arrange(flow) {
     f.side = n === 1 ? (i % 2 ? 'left' : 'right') : null; // one column: a shaped float, text on one side only
     f.cx = n === 1 ? (i % 2 ? hw : W - hw) : Math.min(W - hw, Math.max(hw, f.x * W));
     f.cy = f.y * LH + hh;
-    f.canvas.style.left = `${f.cx - f.w / 2}px`;
-    f.canvas.style.top = `${f.cy - f.h / 2}px`;
-    const capW = Math.min(W, f.w * f.k + 24);
-    const left = Math.min(W - capW, Math.max(0, f.cx - capW / 2));
-    const top = f.cy + hh * ENVELOPE + (MOTION[f.motion] || STILL).y + 6;
-    Object.assign(f.caption.style, { left: `${left}px`, top: `${top}px`, width: `${capW}px` });
-    const capH = f.caption.offsetHeight;
-    flow.rects.push({ x0: left - PAD_X, x1: left + capW + PAD_X, y0: top - PAD_Y, y1: top + capH + PAD_Y });
-    f.bottom = top + capH;
+    f.capW = Math.min(W, f.w * f.k + 24);
+    f.caption.style.width = `${f.capW}px`;
+    f.capH = f.caption.offsetHeight; // measured once per width, so dragging never forces a layout read
+    flow.rects.push((f.capRect = {}));
+    place(flow, f);
     f.S = NaN; // force a transform write at the new scale
     if (f.t0 != null) step(f, performance.now());
   });
-  const base = { paras: flow.paras, cols: flow.cols, lh: LH, measure, indent: FS, minSpan: MIN_SPAN };
-  flow.rows = Math.max(fitRows({ ...base, blocked: blockedFor(flow, true) }), ...flow.figs.map((f) => Math.ceil(f.bottom / LH)));
-  flow.opts = { ...base, rows: flow.rows, blocked: blockedFor(flow, false) };
-  flow.el.style.height = `${flow.rows * LH}px`;
+  flow.base = { paras: flow.paras, cols: flow.cols, lh: LH, measure, indent: FS, minSpan: MIN_SPAN };
   flow.rules.forEach((r) => r.remove());
   flow.rules = flow.cols.slice(1).map((c) => {
     const r = document.createElement('div');
     r.className = 'crule';
     r.setAttribute('aria-hidden', 'true');
-    r.style.cssText = `left:${c.x - GUTTER / 2 - 0.5}px;height:${flow.rows * LH}px`;
+    r.style.left = `${c.x - GUTTER / 2 - 0.5}px`;
     flow.el.append(r);
     return r;
   });
+  fit(flow);
   relayout(flow);
 }
 
+/** Fixed column height: room for the art at its largest anywhere in its motion, so the page never jumps. */
+function fit(flow) {
+  flow.rows = Math.max(fitRows({ ...flow.base, blocked: blockedFor(flow, true) }), ...flow.figs.map((f) => Math.ceil(f.bottom / LH)));
+  flow.opts = { ...flow.base, rows: flow.rows, blocked: blockedFor(flow, false) };
+  sizeTo(flow);
+}
+
+function sizeTo(flow) {
+  const h = `${flow.opts.rows * LH}px`;
+  flow.el.style.height = h;
+  flow.rules.forEach((r) => (r.style.height = h));
+}
+
 function relayout(flow) {
-  const { lines } = layout(flow.opts);
+  let res = layout(flow.opts);
+  if (!res.done) { // art dragged to a spot that costs more lines than the column holds: lengthen it
+    flow.opts.rows = Math.max(flow.opts.rows, fitRows(flow.opts));
+    sizeTo(flow);
+    res = layout(flow.opts);
+  }
+  const { lines } = res;
   const per = flow.ps.map(() => []);
   lines.forEach((l, i) => { l.i = i; per[l.p].push(l); });
   per.forEach((ls, i) => paint(flow.ps[i], flow.pools[i], ls));

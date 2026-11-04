@@ -108,7 +108,8 @@ html:not(.js) .art { display: none; }
 
 /* illustrations */
 .art { margin: 0; }
-.art canvas { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; cursor: zoom-in; }
+.art canvas { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; cursor: grab; touch-action: none; }
+.art canvas.held { cursor: grabbing; }
 .js .art canvas, .js .o-moon canvas, .js .phases canvas { visibility: hidden; }
 .on > canvas { visibility: visible !important; }
 .art figcaption {
